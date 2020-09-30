@@ -21,7 +21,7 @@ Input : Arr[] = { 4, 3, 2, 1}
 Output : Not Possible
  */
 
-var arr = [1, 2, 2, 3, 4, 5, 1, 1, 5];
+var arr = "1,2,2,3,4,5,1,1,5".split(',').map(Number);
 
 function equalSumIndex(arr) {
     var leftSide = 0;
@@ -41,8 +41,6 @@ function equalSumIndex(arr) {
     return -1;
 }
 
-var splitIndex = equalSumIndex(arr);
-
 function splitArrayOnIndex(index) {
 
     var arr1 = arr.slice(0, splitIndex);
@@ -50,9 +48,18 @@ function splitArrayOnIndex(index) {
     
     return [arr1, arr2] //array with two new sides
 }
-console.log('input: ' + arr);
-console.log('arr1: ' + splitArrayOnIndex(splitIndex)[0]);
-console.log('arr2: ' + splitArrayOnIndex(splitIndex)[1]);
+
+var splitIndex = equalSumIndex(arr);
+
+if(splitIndex != -1) {
+    console.log('input: ' + arr);
+    console.log('arr1: ' + splitArrayOnIndex(splitIndex)[0]);
+    console.log('arr2: ' + splitArrayOnIndex(splitIndex)[1]); 
+} else {
+    console.log('Can`t split that array');
+}
+
+
 
 
 
