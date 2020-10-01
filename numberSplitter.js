@@ -20,46 +20,43 @@ Output : {4 1}
 Input : Arr[] = { 4, 3, 2, 1}
 Output : Not Possible
  */
+function script() {
+    var arr = document.getElementById("strInput").value.split(',').map(Number);
 
-var arr = "1,2,2,3,4,5,1,1,5".split(',').map(Number);
+    function equalSumIndex(arr) {
+        var leftSide = 0;
 
-function equalSumIndex(arr) {
-    var leftSide = 0;
+        for (let i = 0; i < arr.length; i++) {
+            leftSide += arr[i];
 
-    for (let i = 0; i < arr.length; i++) {
-        leftSide += arr[i];
+            var rightSide = 0;
+            for (let j = i + 1; j < arr.length; j++) {
+                rightSide += arr[j];
+            }
 
-        var rightSide = 0;
-        for (let j = i + 1; j < arr.length; j++) {
-            rightSide += arr[j];
+            if (leftSide == rightSide) {
+                return i + 1;
+            }
         }
-
-        if (leftSide == rightSide) {
-            return i+1;
-        }
+        return -1;
     }
-    return -1;
+
+    function splitArrayOnIndex(index) {
+
+        var arr1 = arr.slice(0, splitIndex);
+        var arr2 = arr.slice(splitIndex);
+
+        return [arr1, arr2] //array with two new sides
+    }
+
+    var splitIndex = equalSumIndex(arr);
+
+    if (splitIndex != -1) {
+        console.log('input: ' + arr);
+        console.log('arr1: ' + splitArrayOnIndex(splitIndex)[0]);
+        console.log('arr2: ' + splitArrayOnIndex(splitIndex)[1]);
+    } else {
+        console.log('Can`t split that array');
+    }
+
 }
-
-function splitArrayOnIndex(index) {
-
-    var arr1 = arr.slice(0, splitIndex);
-    var arr2 = arr.slice(splitIndex);
-    
-    return [arr1, arr2] //array with two new sides
-}
-
-var splitIndex = equalSumIndex(arr);
-
-if(splitIndex != -1) {
-    console.log('input: ' + arr);
-    console.log('arr1: ' + splitArrayOnIndex(splitIndex)[0]);
-    console.log('arr2: ' + splitArrayOnIndex(splitIndex)[1]); 
-} else {
-    console.log('Can`t split that array');
-}
-
-
-
-
-
